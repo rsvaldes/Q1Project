@@ -5,3 +5,12 @@ img.align-center {
   h1 {
     font-size: 300%;
   }
+  .panel-body {
+    height:250px;
+    overflow-y:scroll;
+    width:100%;
+  }
+.images {
+  height: 250px;
+  width: 250px;
+}
