@@ -1,170 +1,43 @@
 <!DOCTYPE html>
 
 <html>
-<head>
-  <center>
-<title>Search</title>
-  <link rel="stylesheet" href="styles.css">
-  <script>
-  </script>
-<center>
-</head>
-<script
-  src="https://code.jquery.com/jquery-3.1.1.min.js"
-  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-  crossorigin="anonymous"></script>
-  <script src=main.js></script>
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <head>
+    <title>Search</title>
+      <link rel="stylesheet" href="styles.css">
+      <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous"></script>
+      <script src="main.js"></script>
+      <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+      <!-- Optional theme -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+      <!-- Latest compiled and minified JavaScript -->
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-<header>
-  <input type="form" id= "zipinput">
-  <button id = "submit">submit</button>
-</button>
-</header>
-<body>
-  <div class = "container">
-  <div class="row">
-     <div class="col-md-3" id="dog1">
-       <div class="panel panel-default">
-         <div class="panel-heading">
-           <h3 class="panel-title"></h3>
-         </div>
-         <img id = "image1" class = "images" src ="" class="col-md-12 thumbnail">
-         <div class="panel-body">
-           Art party tumeric waistcoat, pinterest jianbing la croix gentrify authentic dreamcatcher.
-         </div>
-       </div>
-     </div>
-       <div class="col-md-3" id="dog2">
-         <div class="panel panel-default">
-           <div class="panel-heading">
-             <h3 class="panel-title"></h3>
-           </div>
-           <img id = "image2" class = "images" src="" class="thumbnail col-md-12">
-           <div class="panel-body">
-             Twee you probably haven't heard of them fixie organic greenclass = "image"  juice typewriter. Schlitz kitsch
-         </div>
-       </div>
-     </div>
-         <div class="col-md-3" id="dog3">
-           <div class="panel panel-default">
-             <div class="panel-heading">
-               <h3 class="panel-title"></h3>
-             </div>
-             <img id = "image3" class = "images" src="" class="thumbnail col-md-12">
-             <div class="panel-body">
-               Twee you probably haven't heard of them fixie organic green juice typewriter. Schlitz kitsch
-           </div>
-         </div>
-       </div>
-       <div class="col-md-3" id="dog4">
-         <div class="panel panel-default">
-           <div class="panel-heading">
-             <h3 class="panel-title"></h3>
-           </div>
-           <img id = "image4" class = "images" src="" class="thumbnail col-md-12">
-           <div class="panel-body">
-             Art party tumeric waistcoat, pinterest jianbing la croix gentrify authentic dreamcatcher.
-           </div>
-         </div>
-       </div>
-       <div class="col-md-3" id="dog5">
-         <div class="panel panel-default">
-           <div class="panel-heading">
-             <h3 class="panel-title"></h3>
-           </div>
-           <img id = "image5" src="" class = "images" class="thumbnail col-md-12">
-           <div class="panel-body">
-             Art party tumeric waistcoat, pinterest jianbing la croix gentrify authentic dreamcatcher.
-           </div>
-         </div>
-       </div>
-       <div class="col-md-3" id="dog6">
-         <div class="panel panel-default">
-           <div class="panel-heading">
-             <h3 class="panel-title"></h3>
-           </div>
-           <img id = "image6" class = "images" src="" class="thumbnail col-md-12">
-           <div class="panel-body">
-             Art party tumeric waistcoat, pinterest jianbing la croix gentrify authentic dreamcatcher.
-           </div>
-         </div>
-       </div>
-       <div class="col-md-3" id="dog7">
-         <div class="panel panel-default">
-           <div class="panel-heading">
-             <h3 class="panel-title"></h3>
-           </div>
-           <img id = "image7" class = "images" src="" class="thumbnail col-md-12">
-           <div class="panel-body">
-             Art party tumeric waistcoat, pinterest jianbing la croix gentrify authentic dreamcatcher.
-           </div>
-         </div>
-       </div>
-       <div class="col-md-3" id="dog8">
-         <div class="panel panel-default">
-           <div class="panel-heading">
-             <h3 class="panel-title"></h3>
-           </div>
-           <img id = "image8" class = "images" src="" class="thumbnail col-md-12">
-           <div class="panel-body">
-             Art party tumeric waistcoat, pinterest jianbing la croix gentrify authentic dreamcatcher.
-           </div>
-         </div>
-       </div>
-       <div class="col-md-3" id="dog9">
-         <div class="panel panel-default">
-           <div class="panel-heading">
-             <h3 class="panel-title"></h3>
-           </div>
-           <img id = "image9" class = "images" src="" class="thumbnail col-md-12">
-           <div class="panel-body">
-             Art party tumeric waistcoat, pinterest jianbing la croix gentrify authentic dreamcatcher.
-           </div>
-         </div>
-       </div>
-       <div class="col-md-3" id="dog10">
-         <div class="panel panel-default">
-           <div class="panel-heading">
-             <h3 class="panel-title"></h3>
-           </div>
-           <img id = "image10" class = "images" src="" class="thumbnail col-md-12">
-           <div class="panel-body">
-             Art party tumeric waistcoat, pinterest jianbing la croix gentrify authentic dreamcatcher.
-           </div>
-         </div>
-       </div>
-       <div class="col-md-3" id="dog11">
-         <div class="panel panel-default">
-           <div class="panel-heading">
-             <h3 class="panel-title"></h3>
-           </div>
-           <img id = "image11" class = "images" src="" class="thumbnail col-md-12">
-           <div class="panel-body">
-             Art party tumeric waistcoat, pinterest jianbing la croix gentrify authentic dreamcatcher.
-           </div>
-         </div>
-       </div>
-       <div class="col-md-3" id="dog12">
-         <div class="panel panel-default">
-           <div class="panel-heading">
-             <h3 class="panel-title"></h3>
-           </div>
-           <img id = "image12" class = "images" src="" class="thumbnail col-md-12">
-           <div class="panel-body">
-             Art party tumeric waistcoat, pinterest jianbing la croix gentrify authentic dreamcatcher.
-           </div>
-         </div>
-       </div>
-     </div>
- </div>
- </div>
-</body>
+  </head>
+
+  <body>
+    <header>
+      <!-- <input type="form" id= "zipinput">
+      <button id = "submit">submit</button> -->
+    </header>
+    <main>
+      <div class ="container">
+        <div class = "row">
+          <div class="col-md-6">
+            <!-- <div class="form-group"> -->
+            <input type="form" class="form-control" id = "zipinput" placeholder="Zip Code" style = "width: 40%; float: left;">
+            <!-- </div> -->
+            <a href = "results.html">
+              <button id = "submit" class="btn btn-default"  style ="width: 20%;">Submit</button>
+
+            </div>
+          </div>
+        </div>
+    </main>
+  </body>
 </html>
