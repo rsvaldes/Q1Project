@@ -10,10 +10,10 @@ img.align-center {
     overflow-y:scroll;
     width:100%;
   }
-.images {
+/*.images {
   height: 250px;
   width: 100%;
-}
+}*/
 .panel-title {
   height: 25px;
 }
@@ -30,10 +30,11 @@ img.align-center {
 #submit {
   margin-top: 20%;
 }
-#featuredimage {
-  height: 250px;
-  align-items: center;
-  width: 100%;
+.img-responsive {
+  margin: 0 auto;
+  height: inherit;
+  /*align-items: center;*/
+  width: auto;
 }
 
 #mainrow {
@@ -41,4 +42,11 @@ img.align-center {
 }
 #featureddog, .panel-title  {
   text-align: center;
+}
+
+.featuredheading, .glyphicon-heart {
+  font-size: 400%;
+}
+.panel {
+  height: auto;
 }

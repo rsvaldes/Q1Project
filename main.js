@@ -5,52 +5,47 @@ $(document).ready(function() {
     let featuredname = '#featureddog .panel-title';
     $(featuredname).html(featured.name.$t);
     let featuredbio = '#featureddog .panel-body';
-    $(featuredbio).html(featured.description.$t);
+    $(featuredbio).html('My ID: ' + featured.id.$t + "<br>" + 'Shelter ID: ' +  featured.shelterId.$t + "<br>" + featured.description.$t);
     let featuredpic = '#featuredimage';
     $(featuredpic).attr("src",featured.media.photos.photo[3].$t );
-
   });
   // var alreadyZip = localStorage.getItem()
   // if alreadyzip, then fire off getJSON request
-  function buildPanels() {
-    for (var i = 0; i < 12; i++) {
-      setDogId();
-      setImageId();
+  function buildPanels(dogs) {
+    for (var i = 0; i < dogs.length; i++) {
       $('#resultdiv').append(
-      '<div class="col-md-3">'+
-      '<div class="panel panel-default">'+
+      '<div class = "col-md-3">' +
+      '<div class="panel panel-default>'+
       '<div class="panel-heading">'+
       '<h3 class="panel-title"></h3>'+
       '</div>'+
-      '<img class="images" + 1" src ="" class="col-md-12 thumbnail">'+
+      '<img class="images col-md-12 img-responsive" src ="" class="col-md-12 thumbnail">'+
       '<div class="panel-body">'+
       '</div>'+
-      '</div>');
+      '</div>'+
+      '</div>'
+      );
   }
-
+  setDogId();
+  setImageId();
   }
 function setDogId () {
-  var count = 0;
   var pups = $('.col-md-3');
-  for (var i = 0; i < pups.length; i++) {
-    count++;
-  $(pups[i]).attr('id', "dog" + count);
+  for (var i = 0; i <= pups.length; i++) {
+    // console.log(pups[i].name['$t']);
+    console.log(i);
+  console.log($(pups[i]).attr('id', "dog" + (i + 1)));
   }
 }
 function setImageId () {
-  var count = 0;
   var pics = $('.images');
-  for (var i = 0; i < pics.length; i++) {
-    count++;
-  $(pics[i]).attr('id', "image" + count);
+  for (var i = 0; i <= pics.length; i++) {
+  $(pics[i]).attr('id', "image" + (i + 1));
   }
 }
-
-
 $('#submit').on("click", function() {
     $('#featureddog').hide();
     $('h1').hide();
-    buildPanels();
       var zip = $('#zipinput').val();
       var size = $('#sizeselect').val();
       var age = $('#ageselect').val();
@@ -68,12 +63,13 @@ $('#submit').on("click", function() {
       var $xhr = $.getJSON(url);
       $xhr.done(function(data){
         let dogs = data.petfinder.pets.pet;
-        console.log(data);
+        buildPanels(dogs);
+        console.log(dogs);
         for (var i = 0; i < dogs.length; i++) {
           let name = '#dog' + (i + 1) + ' .panel-title';
             $(name).html(dogs[i].name.$t);
             let bio = '#dog' + (i + 1) + ' .panel-body';
-              $(bio).html(dogs[i].description.$t);
+              $(bio).html('My ID: ' + dogs[i].id.$t + "<br>" + 'Shelter ID: ' + dogs[i].shelterId.$t + "</br>" +dogs[i].description.$t);
               let pic = '#image' + (i + 1);
                 $(pic).attr("src", dogs[i].media.photos.photo[3].$t);
               }
