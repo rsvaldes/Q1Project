@@ -12,8 +12,33 @@ img.align-center {
   }
 .images {
   height: 250px;
-  width: 250px;
+  width: 100%;
 }
 .panel-title {
   height: 25px;
+}
+
+.selectpicker {
+  margin-top: 20%;
+  margin-bottom: 20%;
+  /*padding-top: 20%;
+  padding-bottom: 20%;*/
+}
+#zipinput {
+   margin-bottom: 20%;
+}
+#submit {
+  margin-top: 20%;
+}
+#featuredimage {
+  height: 250px;
+  align-items: center;
+  width: 100%;
+}
+
+#mainrow {
+  padding-top: 5%;
+}
+#featureddog, .panel-title  {
+  text-align: center;
 }
