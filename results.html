@@ -43,6 +43,7 @@
           <ul class="nav navbar-nav navbar-right">
             <li><a href ="index.html">Home</a></li>
             <li><a href="results.html">Search</a></li>
+            <li><a href="shelters.html">Shelters</a></li>
             <li><a href="http://members.petfinder.com/~NJ623/form.html">Apply To Adopt</a></li>
 
           </ul>
@@ -52,8 +53,9 @@
   </nav>
   <div class = "container">
 <div class="row" id = "mainrow">
+  <div class = class="col-md-12">
   <div class="col-md-2" id = "searchdiv" style = " padding-top: 5%">
-    <div class="col-md-12">
+    <!-- <div class="col-md-2"> -->
     <input type="form" class="form-control" id = "zipinput" placeholder="Zip Code" style = "width: 100%;">
     <input type="form" class="form-control" id = "breedinput" placeholder="Breed (Optional)" style = "width: 100%;">
     <select class="selectpicker" id = "sizeselect">
@@ -82,52 +84,36 @@
 </div>
 
 
-    <div class = "col-md-10" style = "padding-top: 5%" >
-    <div class = "col-md-12" id="resultdiv">
+    <div class = "col-md-10" style = "padding-top: 3%" >
+    <div id="resultdiv">
       <div class = "col-md-12">
-        <div class="col-md-4 ">
-          <img src = "images/featuredpup.png"  id = "heart" style = "height: 150%; width: 150%;">
+        <div class="col-md-4">
+          <img src = "images/featuredpup.png"  id = "heart" class = "img-responsive col-md-4">
   </div>
   <div class = "col-md-8">
-    <div class = "col-md-8">
-        <!-- <div class = "col-md-10"> -->
+    <div class = "col-md-12">
+     <div class = "col-md-8">
+        <div class = "col-md-10">
   <div class="panel panel-default col-md-10 col-md-offset-7" id ="featureddog">
     <div class="panel-heading">
       <h3 class="panel-title"></h3>
     </div>
-    <img class="col-md-12 img-responsive"id = "featuredimage" src="">
     <div class="panel-body">
+      <img class="img-responsive col-md-4"id = "featuredimage" src="">
+    </div>
   </div>
   </div>
  </div>
  </div>
+ </div>
+  </div>
  </div>
  </div>
  </div>
  </div>
  </div>
  <footer>
-   <nav class="navbar navbar-default navbar-fixed-bottom styled-nav">
-   <div class="container-fluid">
-     <!-- Brand and toggle get grouped for better mobile display -->
-     <p id = "info"></p>
 
-     <div class="navbar-header">
-        <a class="navbar-brand " href="#">
-          <!-- <img alt="Brand" src="..."> -->
-        </a>
-      </div>
-      <ul class="nav navbar-nav navbar-right">
-     <li><p>Powered By Petfinder</p></li>
-   </ul>
-
-
-           </ul>
-         </li>
-       </ul>
-     </div><!-- /.navbar-collapse -->
-   </div><!-- /.container-fluid -->
- </nav>
  </footer>
 </body>
 </html>
