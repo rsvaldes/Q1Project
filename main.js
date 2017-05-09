@@ -36,8 +36,6 @@ $('.cartoons').hover(function() {
 function setDogId () {
   var pups = $('.col-md-3');
   for (var i = 0; i <= pups.length; i++) {
-    // console.log(pups[i].name['$t']);
-    console.log(i);
   console.log($(pups[i]).attr('id', "dog" + (i + 1)));
   }
 }
@@ -47,6 +45,7 @@ function setImageId () {
   $(pics[i]).attr('id', "image" + (i + 1));
   }
 }
+
 $('#submit').on("click", function() {
     $('#featureddog').hide();
     $('h1').hide();
@@ -71,10 +70,8 @@ $('#submit').on("click", function() {
       }
       var $xhr = $.getJSON(url);
       $xhr.done(function(data){
-        console.log(breed.list);
         let dogs = data.petfinder.pets.pet;
         buildPanels(dogs);
-        console.log(dogs);
         for (var i = 0; i < dogs.length; i++) {
           let name = '#dog' + (i + 1) + ' .panel-title';
             $(name).html(dogs[i].name.$t);
@@ -85,11 +82,33 @@ $('#submit').on("click", function() {
               }
 });
 });
+function setRescueId () {
+  var pounds = $('.rescueList');
+  for (var i = 0; i < pounds.length; i++) {
+    $(pounds[i]).attr('id', "shelter" + (i + 1));
+  }
+}
+function buildList (rescues) {
+  for (var i = 0; i < rescues.length; i++)  {
+    $('#shelterlist').append(
+      '<li class = "rescueList"></li>'
+    );
+  }
+  setRescueId();
+}
 $('#search').on("click", function () {
-  var $zhr = $.getJSON(`https://g-pet.herokuapp.com/shelter.find?location=80304&count=12&format=json`);
+  var shelterZip = $('#shelterinput').val();
+  var $zhr = $.getJSON(`https://g-pet.herokuapp.com/shelter.find?location=${shelterZip}&count=12&format=json`);
   $zhr.done(function(data){
     console.log(data);
-})
+    let rescues = data.petfinder.shelters.shelter;
+    buildList(rescues);
+    for (var i = 0; i < rescues.length; i++) {
+    $('#shelter1').html(rescues[i].name.$t);
+    let poundName = '#shelter' + (i + i);
+    $(poundName).html(rescues[i].name.$t);
+  }
+});
 
-})
+});
 });
