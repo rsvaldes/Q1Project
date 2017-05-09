@@ -1,4 +1,9 @@
 $(document).ready(function() {
+  var audio = document.createElement("audio");
+  audio.src = "dogbark.m4a";
+$('.cartoons').hover(function() {
+  audio.play();
+});
   var $yhr = $.getJSON(`https://g-pet.herokuapp.com/pet.getRandom?animal=dog&count=1&output=basic&format=json`);
   $yhr.done(function(data) {
     var featured = data.petfinder.pet;
@@ -9,6 +14,7 @@ $(document).ready(function() {
     let featuredpic = '#featuredimage';
     $(featuredpic).attr("src",featured.media.photos.photo[3].$t );
   });
+
   // var alreadyZip = localStorage.getItem()
   // if alreadyzip, then fire off getJSON request
   function buildPanels(dogs) {
@@ -49,6 +55,7 @@ $('#submit').on("click", function() {
       var size = $('#sizeselect').val();
       var age = $('#ageselect').val();
       var sex = $('#sexselect').val();
+      var breed =$('#breedinput').val();
       var url = `https://g-pet.herokuapp.com/pet.find?location=${zip}&animal=dog&count=12&format=json`;
       if (size) {
         url += `&size=${size}`;
@@ -59,8 +66,12 @@ $('#submit').on("click", function() {
       if (sex) {
         url += `&sex=${sex}`;
       }
+      if (breed) {
+        url += `&breed=${breed}`;
+      }
       var $xhr = $.getJSON(url);
       $xhr.done(function(data){
+        console.log(breed.list);
         let dogs = data.petfinder.pets.pet;
         buildPanels(dogs);
         console.log(dogs);
@@ -74,4 +85,11 @@ $('#submit').on("click", function() {
               }
 });
 });
+$('#search').on("click", function () {
+  var $zhr = $.getJSON(`https://g-pet.herokuapp.com/shelter.find?location=80304&count=12&format=json`);
+  $zhr.done(function(data){
+    console.log(data);
+})
+
+})
 });
