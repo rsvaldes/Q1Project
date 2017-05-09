@@ -3,19 +3,30 @@ img.align-center {
     margin: 0px auto;
   }
   h1 {
-    font-size: 300%;
+    font-size: 500%;
   }
   .panel-body {
     height:250px;
     overflow-y:scroll;
     width:100%;
   }
-/*.images {
+.images {
   height: 250px;
   width: 100%;
-}*/
+  margin: 0 auto;
+}
 .panel-title {
   height: 25px;
+}
+.talk-bubble {
+	margin: 40px;
+  display: inline-block;
+  position: relative;
+	width: 200px;
+	height: auto;
+	background-color: lightyellow;
+  border-radius: 20%;
+  bottom: -40px;
 }
 
 .selectpicker {
@@ -30,15 +41,15 @@ img.align-center {
 #submit {
   margin-top: 20%;
 }
-.img-responsive {
+/*.img-responsive {
   margin: 0 auto;
   height: inherit;
   /*align-items: center;*/
-  width: auto;
-}
+    /*width: 100%;
+}*/*/
 
 #mainrow {
-  padding-top: 5%;
+  margin-top: 5%;
 }
 #featureddog, .panel-title  {
   text-align: center;
@@ -47,6 +58,28 @@ img.align-center {
 .featuredheading, .glyphicon-heart {
   font-size: 400%;
 }
-.panel {
-  height: auto;
+
+.styled-nav {
+  background-color: #FFFA85;
+}
+
+.cartoons {
+  height: 100%;
+  width: 100%;
+  position:static;
+}
+#summary {
+  font-size: 2em;
+}
+
+@media  (max-width: 500px){
+  .cartoons {
+    height: 40%;
+    width: 40%;
+    position: static;
+  }
+  .links {
+    font-size: 40px;
+  }
+
 }

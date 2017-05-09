@@ -5,7 +5,7 @@ $(document).ready(function() {
     let featuredname = '#featureddog .panel-title';
     $(featuredname).html(featured.name.$t);
     let featuredbio = '#featureddog .panel-body';
-    $(featuredbio).html('My ID: ' + featured.id.$t + "<br>" + 'Shelter ID: ' +  featured.shelterId.$t + "<br>" + featured.description.$t);
+    $(featuredbio).html('My ID: ' + featured.id.$t + "<br>" + 'My Shelter\'s ID: ' +  featured.shelterId.$t + "<br>" + featured.description.$t);
     let featuredpic = '#featuredimage';
     $(featuredpic).attr("src",featured.media.photos.photo[3].$t );
   });
@@ -13,19 +13,17 @@ $(document).ready(function() {
   // if alreadyzip, then fire off getJSON request
   function buildPanels(dogs) {
     for (var i = 0; i < dogs.length; i++) {
-      $('#resultdiv').append(
-      '<div class = "col-md-3">' +
-      '<div class="panel panel-default>'+
-      '<div class="panel-heading">'+
-      '<h3 class="panel-title"></h3>'+
-      '</div>'+
-      '<img class="images col-md-12 img-responsive" src ="" class="col-md-12 thumbnail">'+
-      '<div class="panel-body">'+
-      '</div>'+
-      '</div>'+
-      '</div>'
-      );
-  }
+          $('#resultdiv').append(
+          '<div class="col-md-3">'+
+          '<div class="panel panel-default">'+
+          '<div class="panel-heading">'+
+          '<h3 class="panel-title"></h3>'+
+          '</div>'+
+          '<img class="images" + 1" src ="" class="col-md-12 thumbnail">'+
+          '<div class="panel-body">'+
+          '</div>'+
+          '</div>');
+      }
   setDogId();
   setImageId();
   }
@@ -46,6 +44,7 @@ function setImageId () {
 $('#submit').on("click", function() {
     $('#featureddog').hide();
     $('h1').hide();
+    $('#heart').hide();
       var zip = $('#zipinput').val();
       var size = $('#sizeselect').val();
       var age = $('#ageselect').val();
@@ -69,7 +68,7 @@ $('#submit').on("click", function() {
           let name = '#dog' + (i + 1) + ' .panel-title';
             $(name).html(dogs[i].name.$t);
             let bio = '#dog' + (i + 1) + ' .panel-body';
-              $(bio).html('My ID: ' + dogs[i].id.$t + "<br>" + 'Shelter ID: ' + dogs[i].shelterId.$t + "</br>" +dogs[i].description.$t);
+              $(bio).html('My ID: ' + dogs[i].id.$t + "<br>" + 'My Shelter\'s ID: ' + dogs[i].shelterId.$t + "</br>" +dogs[i].description.$t);
               let pic = '#image' + (i + 1);
                 $(pic).attr("src", dogs[i].media.photos.photo[3].$t);
               }
