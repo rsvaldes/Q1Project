@@ -66,3 +66,13 @@ width:100%;
   text-align: center;
   width: 300px;
 }
+.name, .email, .phone {
+  line-height: 200%;
+}
+
+#labels {
+  font-size: 200%;
+}
+tr {
+  border-style: solid;
+}
