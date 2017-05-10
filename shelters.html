@@ -41,41 +41,48 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
           <ul class="nav navbar-nav navbar-right">
-            <li class = "links"><a href ="index.html">Home</a></li>
-            <li class = "links"><a href="results.html">Search</a></li>
-            <li class = "links"><a href="shelters.html">Shelters</a></li>
-            <li class = "links"><a href="http://members.petfinder.com/~NJ623/form.html">Apply To Adopt</a></li>
+            <li><a href ="index.html">Home</a></li>
+            <li><a href="results.html">Search</a></li>
+            <li><a href="shelters.html">Shelters</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Apply To Adopt <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li style = "text-align: center;">You can inquire about adoption directly through the shelter or rescue with the dog ID and shelter contact information provided</li>
+                <li role="separator" class="divider"></li>
+                <li  style = "text-align: center;"> To apply through Petfinder, follow the link below to be redirected to their website.</li>
+                <li><a href="http://members.petfinder.com/~NJ623/form.html"><b>Apply Through Petfinder</b></a></li>
+
+              </ul>
+            </li>
           </ul>
 
       </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
+
   </nav>
   <div class ="container">
     <div class = "row">
-      <div class = "col-md-12">
+      <!-- <div class = "col-md-12"> -->
         <div class ="col-md-6">
     <input type="form" class="form-control" id = "shelterinput" placeholder="Enter zip code to search for a shelter near you!" style = "width: 100%;">
   </div>
   <div class ="col-md-6">
     <button id = "search" class="btn btn-default"  style ="width: 100%;">Search</button>
   </div>
+<!-- </div> -->
 </div>
-  </div>
-    <div class = "row">
+  <div class = "row">
+      <div class = "col-md-12">
       <table id = "shelterlist">
       </table>
     </div>
+  </div>
   </div>
 <footer>
   <nav class="navbar navbar-default navbar-fixed-bottom">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
-    <p id = "info"></p>
-
     <div class="navbar-header">
-       <a class="navbar-brand" href="#">
-         <!-- <img alt="Brand" src="..."> -->
-       </a>
+
      </div>
      <ul class="nav navbar-nav navbar-right">
     <li><p>Powered By Petfinder</p></li>
@@ -85,9 +92,8 @@
           </ul>
         </li>
       </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
+    </div>
+ </nav>
 </footer>
 </body>
 </html>

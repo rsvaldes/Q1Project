@@ -44,8 +44,16 @@
             <li><a href ="index.html">Home</a></li>
             <li><a href="results.html">Search</a></li>
             <li><a href="shelters.html">Shelters</a></li>
-            <li><a href="http://members.petfinder.com/~NJ623/form.html">Apply To Adopt</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Apply To Adopt <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li style = "text-align: center;">You can inquire about adoption directly through the shelter or rescue with the dog ID and shelter contact information provided</li>
+                <li role="separator" class="divider"></li>
+                <li  style = "text-align: center;"> To apply through Petfinder, follow the link below to be redirected to their website.</li>
+                <li><a href="http://members.petfinder.com/~NJ623/form.html"><b>Apply Through Petfinder</b></a></li>
 
+              </ul>
+            </li>
           </ul>
 
       </div><!-- /.navbar-collapse -->
@@ -54,9 +62,9 @@
   <div class = "container">
 <div class="row" id = "mainrow">
   <div class = class="col-md-12">
-  <div class="col-md-2" id = "searchdiv" style = " padding-top: 5%">
+  <div class="col-md-2" id = "searchdiv" style = "padding-top: 5%">
     <input type="form" class="form-control" id = "zipinput" placeholder="Zip Code" style = "width: 100%;">
-    <input type="form" class="form-control" id = "breedinput" placeholder="Breed (Optional)" style = "width: 100%;">
+    <!-- <input type="form" class="form-control" id = "breedinput" placeholder="Breed (Optional)" style = "width: 100%;"> -->
     <select class="selectpicker" id = "sizeselect">
       <option value= "" disable selected hidden>Size (Optional)</option>
       <option value = "S">Small</option>
@@ -88,7 +96,7 @@
       <div class = "col-md-12">
           <img src = "images/featuredpup.png"  id = "heart" class = "img-responsive col-md-6">
           <div class = "col-md-6">
-          <div class="panel panel-default col-xs-offset-3" id ="featureddog" style = "width: 300px;">
+          <div class="panel panel-default col-md-offset-3" id ="featureddog" style = "width: 300px;">
             <div class="panel-heading">
               <h3 class="panel-title"></h3>
             </div>
@@ -101,10 +109,25 @@
  </div>
  </div>
  </div>
- </div>
+</div>
  </div>
  <footer>
+   <nav class="navbar navbar-default navbar-fixed-bottom">
+   <div class="container-fluid">
+     <!-- Brand and toggle get grouped for better mobile display -->
+     <div class="navbar-header">
 
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+     <li><p>Powered By Petfinder</p></li>
+   </ul>
+
+
+           </ul>
+         </li>
+       </ul>
+     </div>
+ </nav>
  </footer>
 </body>
 </html>

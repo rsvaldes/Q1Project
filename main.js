@@ -1,4 +1,8 @@
 $(document).ready(function() {
+  var $ihr = $.getJSON(`https://g-ipinfodb.herokuapp.com/v3/ip-city/?format=json`);
+  $ihr.done(function(data) {
+    console.log(data);
+  });
   var audio = document.createElement("audio");
   audio.src = "dogbark.m4a";
 $('.cartoons').hover(function() {
@@ -48,10 +52,12 @@ $('#submit').on("click", function() {
     $('h1').hide();
     $('#heart').hide();
       var zip = $('#zipinput').val();
+      if (zip.length !== 5) {
+      alert('Please enter a valid zip code');
+      }
       var size = $('#sizeselect').val();
       var age = $('#ageselect').val();
       var sex = $('#sexselect').val();
-      var breed =$('#breedinput').val();
       var url = `https://g-pet.herokuapp.com/pet.find?location=${zip}&animal=dog&count=12&format=json`;
       if (size) {
         url += `&size=${size}`;
@@ -61,9 +67,6 @@ $('#submit').on("click", function() {
       }
       if (sex) {
         url += `&sex=${sex}`;
-      }
-      if (breed) {
-        url += `&breed=${breed}`;
       }
       var $xhr = $.getJSON(url);
       $xhr.done(function(data){
@@ -89,8 +92,8 @@ function buildRows (data) {
   setRowId();
 }
 function buildDivs () {
-  // for (var i = 0; i < 1; i++) {
   $('.rescueList').append(
+    // '<div class = "row">'+
     '<div class="col-md-12">'+
     '<div class="col-md-6">'+
     '<div class="name">unavailable</div>'+
@@ -101,11 +104,10 @@ function buildDivs () {
     '<div class="col-md-3">'+
     '<div class="phone">unavailable</div>'+
     '</div>'+
+    // '</div>'+
     '</div>'
   );
-  // }
 }
-
 function setRowId () {
   var pounds = $('.rescueList');
   console.log(pounds);
