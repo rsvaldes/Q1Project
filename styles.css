@@ -76,3 +76,6 @@ width:100%;
 tr {
   border-style: solid;
 }
+.navbar-default, .navbar-collapse, .navbar-default, .navbar-form {
+  background-color: #bdaeae;
+}
