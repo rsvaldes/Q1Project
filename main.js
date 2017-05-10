@@ -16,10 +16,10 @@ $('.cartoons').hover(function() {
     $(featuredname).html(featured.name.$t);
     let featuredbio = '#featureddog .panel-body';
     let featuredpic = '#featuredimage';
-    $(featuredbio).html('<img class = "images img-responsive thumbnail" id=' + featuredpic + ' src=  ' + featured.media.photos.photo[3].$t + '>' + 'My ID: ' + featured.id.$t + "<br>" + 'My Shelter\'s ID: ' + featured.shelterId.$t + "</br>" + 'Shelter Phone: ' + featured.contact.phone.$t + "<br>" + 'Shelter Email: ' + "<a href = mailto:" + featured.contact.email.$t + ">" + featured.contact.email.$t + "</a>" + "<br>" + featured.description.$t);
+    $(featuredbio).html('<img class = "images img-responsive thumbnail" id=' + featuredpic + ' src=  ' + featured.media.photos.photo[3].$t + '>' + "<b>" + 'My ID: ' + featured.id.$t + "<br>" + 'My Shelter\'s ID: ' + featured.shelterId.$t + "</br>" + 'Shelter Phone: ' + featured.contact.phone.$t + "<br>" + 'Shelter Email: ' +"</b>" + "<a href = mailto:" + featured.contact.email.$t + ">" + featured.contact.email.$t + "</a>" + "<br>" + featured.description.$t);
   });
-  function buildPanels(dogs) {
-    for (var i = 0; i < dogs.length; i++) {
+  function buildPanels(arr) {
+    for (var i = 0; i < arr.length; i++) {
           $('#resultdiv').append(
           '<div class="col-md-3">'+
           '<div class="panel panel-default">'+
@@ -48,58 +48,92 @@ function setImageId () {
 }
 
 $('#submit').on("click", function() {
-    var offset = 0;
     $('#featureddog').hide();
     $('h1').hide();
     $('#heart').hide();
+
       var zip = $('#zipinput').val();
       if (zip.length !== 5) {
       alert('Please enter a valid zip code');
       }
-      localStorage.setItem('location', zip);
+      localStorage.setItem('location',zip);
+
       var size = $('#sizeselect').val();
       var age = $('#ageselect').val();
       var sex = $('#sexselect').val();
+
+      // function Dog(zip, size, age, sex){
+      //   this.size = size;
+      //   this.age = age;
+      //   this.sex = sex;
+      //   this.zip = zip;
+      // }
+      //
+      // var firstDog = new Dog(zip, size, age, sex);
+      // console.log(firstDog);
+
       var url = `https://g-pet.herokuapp.com/pet.find?location=${zip}&animal=dog&count=12&format=json`;
       if (size) {
         url += `&size=${size}`;
+        localStorage.setItem('dogsize', size);
       }
       if (age) {
         url += `&age=${age}`;
+        localStorage.setItem('dogage', age);
       }
       if (sex) {
         url += `&sex=${sex}`;
+        localStorage.setItem('dogsex',sex);
       }
       var $xhr = $.getJSON(url);
       $xhr.done(function(data){
         // console.log(data);
         let dogs = data.petfinder.pets.pet;
-        offset = data.petfinder.lastOffset.$t;
+        var offset = data.petfinder.lastOffset.$t;
+        localStorage.setItem('searchOffset', offset);
         var newurl = url += '&offset=' + offset;
         console.log(newurl);
         buildPanels(dogs);
-        $('#navigate').show();
-        for (var i = 0; i < dogs.length; i++) {
+
+        function populate (arr) {
+        for (var i = 0; i < arr.length; i++) {
           let name = '#dog' + (i + 1) + ' .panel-title';
-          $(name).html(dogs[i].name.$t);
+          $(name).html(arr[i].name.$t);
           let bio = '#dog' + (i + 1) + ' .panel-body';
           let pic = 'image' + (i + 1);
-          $(bio).html('<img class = "images img-responsive thumbnail" id=' + pic + ' src=  ' + dogs[i].media.photos.photo[3].$t + '>' + "<b>"+' My ID: ' + dogs[i].id.$t + "<br>" + 'My Shelter\'s ID: ' + dogs[i].shelterId.$t + "</br>" + 'Shelter Phone: ' + dogs[i].contact.phone.$t + "<br>" + 'Shelter Email: ' + "</b>" + "<a href = mailto:" + dogs[i].contact.email.$t + ">" + dogs[i].contact.email.$t +"</a>" + "<br>" + dogs[i].description.$t);
+          $(bio).html('<img class = "images img-responsive thumbnail" id=' + pic + ' src=  ' + arr[i].media.photos.photo[3].$t + '>' + "<b>"+' My ID: ' + arr[i].id.$t + "<br>" + 'My Shelter\'s ID: ' + arr[i].shelterId.$t + "</br>" + 'Shelter Phone: ' + arr[i].contact.phone.$t + "<br>" + 'Shelter Email: ' + "</b>" + "<a href = mailto:" + dogs[i].contact.email.$t + ">" + arr[i].contact.email.$t +"</a>" + "<br>" + arr[i].description.$t);
         }
-        
+      }
+      populate(dogs);
       });
 
-          $('#moreresults').on("click", function (newurl) {
-          var alreadyZip = localStorage.getItem('location');
-          console.log(alreadyZip);
+          $('#moreresults').on("click", function () {
+            var alreadyZip = localStorage.getItem('location');
+            var currentOffset = localStorage.getItem('searchOffset');
+            let newurl =  `https://g-pet.herokuapp.com/pet.find?location=${alreadyZip}&offset=${currentOffset}&animal=dog&count=12&format=json`;
+          var alreadySize = localStorage.getItem('dogsize');
+          var alreadySex = localStorage.getItem('dogsex');
+          var alreadyAge = localStorage.getItem('dogage');
+          if (alreadySize) {
+            newurl += `&size=${alreadySize}`;
+          }
+          if (alreadySex) {
+            newurl += `&sex=${alreadySex}`;
+          }
+          if (alreadyAge) {
+            newurl += `&age=${alreadyAge}`;
+          }
           console.log(newurl);
           var $bhr = $.getJSON(newurl);
           $bhr.done(function (data) {
-          console.log(data);
-
+          buildPanels();
+          populate(moreDogs);
           });
         }
 );
+$('#clear').on("click", function () {
+  localStorage.clear();
+})
 
 });
 function buildRows (data) {
@@ -140,7 +174,6 @@ $('#search').on("click", function () {
     buildRows(rescues);
     buildDivs();
     for (let i = 0; i < rescues.length; i++) {
-    // let emailaddress = rescues[i].email.$t;
     let poundName = '#shelter' + (i + 1) + ' .name';
     let poundEmail = '#shelter' + (i + 1) + ' .email';
     let poundPhone = '#shelter' + (i + 1) + ' .phone';
