@@ -12,13 +12,20 @@ $(document).ready(function() {
     //making AJAX call for featured dog div on default search page
     var $yhr = $.getJSON(`https://g-pet.herokuapp.com/pet.getRandom?animal=dog&count=1&output=basic&format=json`);
     $yhr.done(function(data) {
-        var featured = data.petfinder.pet;
-        // console.log(featured);
+        let featured = data.petfinder.pet;
         let featuredname = '#featureddog .panel-title';
         $(featuredname).html(featured.name.$t);
+        console.log(featured.name.$t);
         let featuredbio = '#featureddog .panel-body';
         let featuredpic = '#featuredimage';
-        $(featuredbio).html('<img class = "images img-responsive thumbnail" id=' + featuredpic + ' src=  ' + featured.media.photos.photo[3].$t + '>' + "<b>" + 'My ID: ' + featured.id.$t + "<br>" + 'My Shelter\'s ID: ' + featured.shelterId.$t + "</br>" + 'Shelter Phone: ' + featured.contact.phone.$t + "<br>" + 'Shelter Email: ' + "</b>" + "<a href = mailto:" + featured.contact.email.$t + ">" + featured.contact.email.$t + "</a>" + "<br>" + featured.description.$t);
+        var featuredPhoto;
+        if (featured.media.photos !== undefined) {
+          featuredPhoto = featured.media.photos.photo[3].$t;
+        }
+        else {
+          featuredPhoto = "images/dogunavailable.jpg";
+        }
+        $(featuredbio).html('<img class = "images img-responsive thumbnail" id=' + featuredpic + ' src=  ' + featuredPhoto + '>' + "<b>" + 'My ID: ' + featured.id.$t + "<br>" + 'My Shelter\'s ID: ' + featured.shelterId.$t + "</br>" + 'Shelter Phone: ' + featured.contact.phone.$t + "<br>" + 'Shelter Email: ' + "</b>" + "<a href = mailto:" + featured.contact.email.$t + ">" + featured.contact.email.$t + "</a>" + "<br>" + featured.description.$t);
     });
     // var offset = 0;
     //building panel dynamically, can re-use this code for future AJAX calls
@@ -92,24 +99,13 @@ $(document).ready(function() {
         function populate(arr) {
             for (var i = 0; i < arr.length; i++) {
                 let name = '#dog' + (i + 1) + ' .panel-title';
-                $(name).append(arr[i].name.$t);
+                $(name).html(arr[i].name.$t);
                 let bio = '#dog' + (i + 1) + ' .panel-body';
                 let pic = 'image' + (i + 1);
-                let photo;
-                if (arr[i].media.photos !== undefined) {
-                    photo = arr[i].media.photos.photo[3].$t;
-                } else {
-                    photo = "images/dogunavailable.jpg";
-                }
-                $(bio).append('<img class = "images img-responsive thumbnail" id=' + pic + ' src=  ' + photo + '>' + '<button type="button" id = "getInfo"class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm"'+ ">" + "Get Contact Info" + "</button>"+
-                '<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"' + ">" +
-                '<div class="modal-dialog modal-sm" role="document"' + ">"+
-                '<div class="modal-content"' + ">" + "<b>" + 'My ID: ' + arr[i].id.$t + "<br>" + 'My Shelter\'s ID: ' + arr[i].shelterId.$t + "</br>" + 'Shelter Phone: ' + arr[i].contact.phone.$t + "<br>" + 'Shelter Email: ' + "<a href = mailto:" + arr[i].contact.email.$t + ">" + "</b>" + arr[i].contact.email.$t + "</a>" + '<button type="button" id = "close" class="btn btn-default" data-dismiss="modal"'+ ">" + "Close" + "</button>" + '</div>'+ '</div>'+ '</div>' + "<br>"+ arr[i].description.$t);
+                $(bio).append('<img class = "images img-responsive thumbnail" id=' + pic + ' src=  ' + arr[i].media.photos.photo[3].$t + '>' + "<b>" + ' My ID: ' + arr[i].id.$t + "<br>" + 'My Shelter\'s ID: ' + arr[i].shelterId.$t + "</br>" + 'Shelter Phone: ' + arr[i].contact.phone.$t + "<br>" + 'Shelter Email: ' + "</b>" + "<a href = mailto:" + arr[i].contact.email.$t + ">" + arr[i].contact.email.$t + "</a>" + "<br>" + arr[i].description.$t);
             }
         }
-
         //setting Ids for dogs in all AJAX calls after first one
-
         function setNewDogId() {
             var pups = $('.col-md-3');
             for (var i = offset; i <= pups.length; i++) {
@@ -141,13 +137,6 @@ $(document).ready(function() {
             }
 
         }
-        // function createModal (arr) {
-        //   '<button type="button" id = "getInfo"class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm"'+ ">" + "Get Contact Info" + "</button>"+
-        //   '<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"' + ">" +
-        //   '<div class="modal-dialog modal-sm" role="document"' + ">"+
-        //   '<div class="modal-content"' + ">" + "<b>" + 'My ID: ' + arr[i].id.$t + "<br>" + 'My Shelter\'s ID: ' + arr[i].shelterId.$t + "</br>" + 'Shelter Phone: ' + arr[i].contact.phone.$t + "<br>" + 'Shelter Email: ' + "<a href = mailto:" + arr[i].contact.email.$t + ">" + "</b>" + arr[i].contact.email.$t + "</a>" + '<button type="button" id = "close" class="btn btn-default" data-dismiss="modal"'+ ">" + "Close" + "</button>" + '</div>'+ '</div>'+ '</div>' + "<br>";
-        // }
-      });
         //setting url and accessing local storage for all AJAX calls after first one
         $('#moreresults').on("click", function() {
             offset += 12;
@@ -171,6 +160,7 @@ $(document).ready(function() {
             //gets more data and calls all functions to append data to DOM
             function getMore(anotherurl) {
                 $.getJSON(anotherurl).then(function(result) {
+                    // offset += 12;
                     let moreDogs = result.petfinder.pets.pet;
                     buildPanels(moreDogs);
                     setNewDogId();
@@ -236,5 +226,4 @@ $(document).ready(function() {
             }
         });
     });
-
-// });
+});
