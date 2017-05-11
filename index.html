@@ -26,7 +26,6 @@
 </head>
 <body>
   <nav class="navbar navbar-default">
-    <!-- <div class="container-fluid"> -->
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -41,16 +40,23 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
           <ul class="nav navbar-nav navbar-right">
-            <li class = "links"><a href ="index.html">Home</a></li>
-            <li class = "links"><a href="results.html">Search</a></li>
-            <li class = "links"><a href="shelters.html">Shelters</a></li>
-            <li class = "links"><a href="http://members.petfinder.com/~NJ623/form.html">Apply To Adopt</a></li>
+            <li><a href ="index.html">Home</a></li>
+            <li><a href="results.html">Search</a></li>
+            <li><a href="shelters.html">Shelters</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Apply To Adopt <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li style = "text-align: center;">You can inquire about adoption directly through the shelter or rescue with the dog ID and shelter contact information provided</li>
+                <li role="separator" class="divider"></li>
+                <li  style = "text-align: center;"> To apply through Petfinder, follow the link below to be redirected to their website.</li>
+                <li><a href="http://members.petfinder.com/~NJ623/form.html"><b>Apply Through Petfinder</b></a></li>
+
+              </ul>
+            </li>
           </ul>
-
-
+        </ul>
 
       </div><!-- /.navbar-collapse -->
-    <!-- </div> -->
 
   </nav>
 <div class = "container">
