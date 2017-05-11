@@ -4,21 +4,18 @@
     overflow-y: scroll;
     width:inherit;
   }
-.images {
-max-height: 300px;
-width:100%;
+  .images {
+  max-height: 300px;
+  width:100%;
+
 }
-/*#image1 {
-  height: 250px;
-  width: auto;
-}*/
 .panel-heading {
   height: 10%;
   background-color: #bdaeae;
 }
 .panel-title {
   font-size: 1px;
-  background-color: #bdaeae;
+  /*background-color: #bdaeae;*/
 }
 .panel {
   height: 500px;
@@ -28,35 +25,20 @@ width:100%;
   margin-top: 15%;
   margin-bottom: 15%;
 }
-/*#clear {
-  margin-top: 10%;
-}*/
 #submit {
-  /*margin-top: 5%;*/
   margin-bottom: 5%;
 }
-
 #zipinput {
    margin-bottom: 20%;
 }
 #submit {
   margin-top: 20%;
 }
-/*.img-responsive {
-  margin: 0 auto;
-  height: inherit;
-  /*align-items: center;*/
-    /*width: 100%;
-}*/*/
+
 
 #mainrow {
   margin-top: 5%;
 }
-/*#featureddog, .panel-title  {
-  text-align: center;
-}*/
-
-
 
 .cartoons {
   height: 100%;
@@ -66,14 +48,16 @@ width:100%;
 #summary {
   font-size: 200%;
 }
-#featureddog .panel-title{
+.panel-title{
   height:100%;
   width: 100%;
   align-content: center;
   text-align: center;
 }
-#featureddog .panel-body {
+.panel-body {
   text-align: center;
+}
+#featureddog .panel-body {
   width: 300px;
 }
 .name, .email, .phone {
@@ -90,14 +74,29 @@ p {
   text-align: center;
 }
 
-.navbar, .navbar-default, .navbar-fixed-bottom, .navbar-collapse, .navbar-form, .navbar-header, .navbar-nav, .navbar-right, .dropdown, .dropdown-toggle{
+/*.navbar, .navbar-default, .navbar-fixed-bottom, .navbar-collapse, .navbar-form, .navbar-header, .navbar-nav, .navbar-right, .dropdown, .dropdown-toggle{
+}*/
+
+footer, nav.navbar.navbar-default.navbar-fixed-bottom, .navbar-default {
   background-color: #bdaeae;
 }
-/*.dropdown-menu {
-  background-color: #bdaeae;
-}*/
-/*@ media (max-width: 600px) {
-  #shelterPanel {
-    width: 100%;
-  }
-}*/
+nav.navbar.navbar-default.navbar-fixed-bottom {
+  margin-top: 10%;
+}
+
+#getInfo {
+  margin-bottom: 5%;
+}
+#getInfo, #submit, #clear, #search, #moreresults, #close {
+  background: #BDAEAE;
+  border-color: #BDAEAE;
+  color: #4C4B4B;
+}
+ #search{
+   background: #BDAEAE;
+   border-color: #BDAEAE;
+   color:black;
+ }
+ #featureddog {
+   margin-bottom: 20%;
+ }
