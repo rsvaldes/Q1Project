@@ -84,7 +84,7 @@ width:100%;
 tr {
   border-style: solid;
 }
-.navbar-default, .navbar-collapse, .navbar-default, .navbar-form, .navbar-fixed-bottom, .navbar{
+.navbar-default, .navbar-collapse, .navbar-default, .navbar-form, .navbar-fixed-bottom, .navbar-header{
   background-color: #bdaeae;
 }
 /*.navbar, .navbar-default, .navbar-fixed-bottom {
