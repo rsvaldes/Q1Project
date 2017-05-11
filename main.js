@@ -118,14 +118,9 @@ $(document).ready(function() {
                 let name = '#dog' + (i + 1) + ' .panel-title';
                 let bio = '#dog' + (i + 1) + ' .panel-body';
                 let pic = 'image' + (i + 1);
-                var num;
-                if (i === offset) {
-                    num = 0;
-                } else {
-                    num += 1;
-                }
-                var morePhotos;
-                if (arr[num].media.photos.photo !== undefined) {
+                var num = (i === offset) ? 0 : num + 1;
+                let morePhotos;
+                if (arr[num].media.photos !== undefined) {
                     morePhotos = arr[num].media.photos.photo[3].$t;
                 } else {
                     morePhotos = "images/dogunavailable.jpg";
