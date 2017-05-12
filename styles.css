@@ -387,4 +387,7 @@ and (device-height: 732px) {
       .dogPanels {
         width: 300px;
       }
+      #moreresults {
+        margin-left: 40%;
+      }
     }
