@@ -9,32 +9,29 @@ $(document).ready(function() {
     $('.cartoons').hover(function() {
         audio.play();
     });
+    $('.navbar-brand').on("click", function() {
+        audio.play();
+      });
     //making AJAX call for featured dog div on default search page
     var $yhr = $.getJSON(`https://g-pet.herokuapp.com/pet.getRandom?animal=dog&count=1&output=basic&format=json`);
     $yhr.done(function(data) {
-        let featured = data.petfinder.pet;
+        var featured = data.petfinder.pet;
+        // console.log(featured);
         let featuredname = '#featureddog .panel-title';
         $(featuredname).html(featured.name.$t);
         console.log(featured.name.$t);
         let featuredbio = '#featureddog .panel-body';
         let featuredpic = '#featuredimage';
-        var featuredPhoto;
-        if (featured.media.photos !== undefined) {
-          featuredPhoto = featured.media.photos.photo[3].$t;
-        }
-        else {
-          featuredPhoto = "images/dogunavailable.jpg";
-        }
-        $(featuredbio).html('<img class = "images img-responsive thumbnail" id=' + featuredpic + ' src=  ' + featuredPhoto + '>' + "<b>" + 'My ID: ' + featured.id.$t + "<br>" + 'My Shelter\'s ID: ' + featured.shelterId.$t + "</br>" + 'Shelter Phone: ' + featured.contact.phone.$t + "<br>" + 'Shelter Email: ' + "</b>" + "<a href = mailto:" + featured.contact.email.$t + ">" + featured.contact.email.$t + "</a>" + "<br>" + featured.description.$t);
+        $(featuredbio).html('<img class = "images img-responsive thumbnail" id=' + featuredpic + ' src=  ' + featured.media.photos.photo[3].$t + '>' + "<b>" + 'My ID: ' + featured.id.$t + "<br>" + 'My Shelter\'s ID: ' + featured.shelterId.$t + "</br>" + 'Shelter Phone: ' + featured.contact.phone.$t + "<br>" + 'Shelter Email: ' + "</b>" + "<a href = mailto:" + featured.contact.email.$t + ">" + featured.contact.email.$t + "</a>" + "<br>" + featured.description.$t);
     });
     // var offset = 0;
     //building panel dynamically, can re-use this code for future AJAX calls
     function buildPanels(arr) {
         for (var i = 0; i < arr.length; i++) {
             $('#resultdiv').append(
-                '<div class="col-md-3">' +
-                '<div class="panel panel-default">' +
-                '<div class="panel-heading">' +
+                '<div class="col-md-3 col-sm-4 col-xs-12 col-xs-offset-1">' +
+                '<div class="panel panel-default dogPanels">' +
+                '<div class="panel-heading dogNames">' +
                 '<h3 class="panel-title"></h3>' +
                 '</div>' +
                 '<div class="panel-body">' +
@@ -61,9 +58,7 @@ $(document).ready(function() {
     }
     //AJAX call for first set of 12 results
     $('#submit').on("click", function() {
-        // if (zip.length === 5) {
         $('#moreresults').show();
-        // }
         $('#featureddog').hide();
         $('h1').hide();
         $('#heart').hide();
@@ -99,7 +94,7 @@ $(document).ready(function() {
         function populate(arr) {
             for (var i = 0; i < arr.length; i++) {
                 let name = '#dog' + (i + 1) + ' .panel-title';
-                $(name).html(arr[i].name.$t);
+                $(name).append(arr[i].name.$t);
                 let bio = '#dog' + (i + 1) + ' .panel-body';
                 let pic = 'image' + (i + 1);
                 $(bio).append('<img class = "images img-responsive thumbnail" id=' + pic + ' src=  ' + arr[i].media.photos.photo[3].$t + '>' + "<b>" + ' My ID: ' + arr[i].id.$t + "<br>" + 'My Shelter\'s ID: ' + arr[i].shelterId.$t + "</br>" + 'Shelter Phone: ' + arr[i].contact.phone.$t + "<br>" + 'Shelter Email: ' + "</b>" + "<a href = mailto:" + arr[i].contact.email.$t + ">" + arr[i].contact.email.$t + "</a>" + "<br>" + arr[i].description.$t);
@@ -177,10 +172,13 @@ $(document).ready(function() {
     });
     //building rows inside of table in shelter search
     function buildRows(data) {
+      $('#shelterlist').append(
+        '<tr id = "header"></tr>'
+      );
         for (var i = 0; i < data.length; i++) {
             console.log('buildList');
             $('#shelterlist').append(
-                '<tr class = "rescueList"></tr>'
+              '<tr class = "rescueList"></tr>'
             );
         }
         setRowId();
@@ -188,15 +186,21 @@ $(document).ready(function() {
     //building divs for table in shelter search
     function buildDivs() {
         $('.rescueList').append(
-            '<td class = "col-md-6 name">Unavailable</td>' +
-            '<td class = "col-md-3 email">Unavailable</td>' +
+            '<td class = "col-md-5 name">Unavailable</td>' +
+            '<td class = "col-md-4 email">Unavailable</td>' +
             '<td class = "col-md-3 phone">Unavailable</td>'
         );
+    }
+    function buildHeader () {
+      $('#header').append(
+        '<td class = "labels col-md-5">Name</td>' +
+        '<td class = "labels col-md-4">Phone</td>' +
+        '<td class = "labels col-md-3">Email</td>'
+      );
     }
     //setting ids for all rows with class .rescueList
     function setRowId() {
         var pounds = $('.rescueList');
-        console.log(pounds);
         for (var i = 0; i <= pounds.length; i++) {
             $(pounds[i]).attr('id', "shelter" + (i + 1));
         }
@@ -208,12 +212,11 @@ $(document).ready(function() {
         if (clicked === true) {
             $('#shelterlist').html('');
         }
-        $("#labels").show();
         var shelterZip = $('#shelterinput').val();
-        var $zhr = $.getJSON(`https://g-pet.herokuapp.com/shelter.find?location=${shelterZip}&count=20&format=json`);
+        var $zhr = $.getJSON(`https://g-pet.herokuapp.com/shelter.find?location=${shelterZip}&count=30&format=json`);
         $zhr.done(function(data) {
             let rescues = data.petfinder.shelters.shelter;
-            console.log('rescues', rescues);
+            buildHeader();
             buildRows(rescues);
             buildDivs();
             for (let i = 0; i < rescues.length; i++) {
