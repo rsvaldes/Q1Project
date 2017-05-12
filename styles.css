@@ -151,7 +151,7 @@ nav.navbar.navbar-default.navbar-fixed-bottom {
        word-wrap:break-word;
      }
      #moreresults {
-       /*padding-bottom: 20px;
+       padding-bottom: 20px;
        margin-left: 72px;
        margin-bottom:300px;
      }
@@ -173,7 +173,7 @@ nav.navbar.navbar-default.navbar-fixed-bottom {
      #navbarlogo {
        width: 80%;
        max-height: 200%;
-       /*margin-top: 5%;*/
+       margin-top: 5%;
      }
      .navbarlinks {
        margin-top: 100%;
