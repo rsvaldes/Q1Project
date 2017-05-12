@@ -161,23 +161,17 @@ nav.navbar.navbar-default.navbar-fixed-bottom {
      #ageselect {
        margin-top: 1px;
      }
-     .navbar-default {
-       width: 100%;
-     }
-     #homepagelogo {
-       margin-top: 40%;
-     }
      #summary {
        font-size: 200%;
      }
      #navbarlogo {
-       width: 80%;
-       max-height: 200%;
-       margin-top: 5%;
+       /*width: 200px;*/
+       height: 180%;
+       /*margin-top: 5%;*/
      }
-     .navbarlinks {
+     /*.navbarlinks {
        margin-top: 100%;
-     }
+     }*/
 
  }
 
