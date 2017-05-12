@@ -84,7 +84,7 @@ $(document).ready(function() {
         var size = $('#sizeselect').val();
         var age = $('#ageselect').val();
         var sex = $('#sexselect').val();
-        var url = `https://g-pet.herokuapp.com/pet.find?location=${zip}&animal=dog&count=36&format=json`;
+        var url = `https://g-pet.herokuapp.com/pet.find?location=${zip}&animal=dog&count=12&format=json`;
         if (size) {
             url += `&size=${size}`;
             localStorage.setItem('dogsize', size);
@@ -145,6 +145,13 @@ $(document).ready(function() {
             for (var i = offset; i <= offset + 12; i++) {
                 let name = '#dog' + (i + 1) + ' .panel-title';
                 let bio = '#dog' + (i + 1) + ' .panel-body';
+                var moreStory;
+                if (arr[num].description.$t !== undefined) {
+                  moreStory = arr[num].description.$t;
+                }
+                else {
+                  moreStory = 'My story may be not very well known, but I promise I can give you love if you give me a furever home!';
+                }
                 let pic = 'image' + (i + 1);
                 var num = (i === offset) ? 0 : num + 1;
                 let morePhotos;
@@ -154,7 +161,7 @@ $(document).ready(function() {
                     morePhotos = "images/dogunavailable.jpg";
                 }
                 $(name).append(arr[num].name.$t);
-                $(bio).append('<img class = "images img-responsive thumbnail" id=' + pic + ' src=  ' + morePhotos + '>' + "<b>" + ' My ID: ' + arr[num].id.$t + "<br>" + 'My Shelter\'s ID: ' + arr[num].shelterId.$t + "</br>" + 'Shelter Phone: ' + arr[num].contact.phone.$t + "<br>" + 'Shelter Email: ' + "</b>" + "<a href = mailto:" + arr[num].contact.email.$t + ">" + arr[num].contact.email.$t + "</a>" + "<br>" + arr[num].description.$t);
+                $(bio).append('<img class = "images img-responsive thumbnail" id=' + pic + ' src=  ' + morePhotos + '>' + "<b>" + ' My ID: ' + arr[num].id.$t + "<br>" + 'My Shelter\'s ID: ' + arr[num].shelterId.$t + "</br>" + 'Shelter Phone: ' + arr[num].contact.phone.$t + "<br>" + 'Shelter Email: ' + "</b>" + "<a href = mailto:" + arr[num].contact.email.$t + ">" + arr[num].contact.email.$t + "</a>" + "<br>" + moreStory);
             }
 
         }
