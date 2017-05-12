@@ -30,7 +30,14 @@ $(document).ready(function() {
         else {
           featuredPhoto = "images/dogunavailable.jpg";
         }
-        $(featuredbio).html('<img class = "images img-responsive thumbnail" id=' + featuredpic + ' src=  ' + featuredPhoto + '>' + "<b>" + 'My ID: ' + featured.id.$t + "<br>" + 'My Shelter\'s ID: ' + featured.shelterId.$t + "</br>" + 'Shelter Phone: ' + featured.contact.phone.$t + "<br>" + 'Shelter Email: ' + "</b>" + "<a href = mailto:" + featured.contact.email.$t + ">" + featured.contact.email.$t + "</a>" + "<br>" + featuredStory);
+        var morePhone;
+        if (featured.contact.phone.$t !== undefined) {
+          featuredPhone = featured.contact.phone.$t;
+        }
+        else {
+          featuredPhone = 'Unavailable';
+        }
+        $(featuredbio).html('<img class = "images img-responsive thumbnail" id=' + featuredpic + ' src=  ' + featuredPhoto + '>' + "<b>" + 'My ID: ' + featured.id.$t + "<br>" + 'My Shelter\'s ID: ' + featured.shelterId.$t + "</br>" + 'Shelter Phone: ' + featuredPhone + "<br>" + 'Shelter Email: ' + "</b>" + "<a href = mailto:" + featured.contact.email.$t + ">" + featured.contact.email.$t + "</a>" + "<br>" + featuredStory);
     });
     // var offset = 0;
     //building panel dynamically, can re-use this code for future AJAX calls
@@ -95,6 +102,7 @@ $(document).ready(function() {
         var $xhr = $.getJSON(url);
         $xhr.done(function(data) {
             let dogs = data.petfinder.pets.pet;
+            console.log(dogs);
             buildPanels(dogs);
             populate(dogs);
         });
@@ -117,7 +125,14 @@ $(document).ready(function() {
                   dogPhoto = arr[i].media.photos.photo[3].$t;
                 }
                 else (dogPhoto = "images/dogunavailable.jpg");
-                $(bio).append('<img class = "images img-responsive thumbnail" id=' + pic + ' src=  ' + dogPhoto + '>' + "<b>" + ' My ID: ' + arr[i].id.$t + "<br>" + 'My Shelter\'s ID: ' + arr[i].shelterId.$t + "</br>" + 'Shelter Phone: ' + arr[i].contact.phone.$t + "<br>" + 'Shelter Email: ' + "</b>" + "<a href = mailto:" + arr[i].contact.email.$t + ">" + arr[i].contact.email.$t + "</a>" + "<br>" + dogStory);
+                var shelterPhone;
+                if (arr[i].contact.phone.$t !== undefined) {
+                  shelterPhone = arr[i].contact.phone.$t;
+                }
+                else {
+                  shelterPhone = 'Unavailable';
+                }
+                $(bio).append('<img class = "images img-responsive thumbnail" id=' + pic + ' src=  ' + dogPhoto + '>' + "<b>" + ' My ID: ' + arr[i].id.$t + "<br>" + 'My Shelter\'s ID: ' + arr[i].shelterId.$t + "</br>" + 'Shelter Phone: ' + shelterPhone + "<br>" + 'Shelter Email: ' + "</b>" + "<a href = mailto:" + arr[i].contact.email.$t + ">" + arr[i].contact.email.$t + "</a>" + "<br>" + dogStory);
             }
         }
         //setting Ids for dogs in all AJAX calls after first one
@@ -139,6 +154,7 @@ $(document).ready(function() {
             for (var i = offset; i <= offset + 12; i++) {
                 let name = '#dog' + (i + 1) + ' .panel-title';
                 var num = (i === offset) ? 0 : num + 1;
+                $(name).append(arr[num].name.$t);
                 var morePhotos;
                 let pic = 'image' + (i + 1);
                 var moreStory;
@@ -154,8 +170,14 @@ $(document).ready(function() {
                 else {
                   moreStory = 'My story may be not very well known, but I promise I can give you love if you give me a furever home!';
                 }
-                $(name).append(arr[num].name.$t);
-                $(bio).append('<img class = "images img-responsive thumbnail" id=' + pic + ' src=  ' + morePhotos + '>' + "<b>" + ' My ID: ' + arr[num].id.$t + "<br>" + 'My Shelter\'s ID: ' + arr[num].shelterId.$t + "</br>" + 'Shelter Phone: ' + arr[num].contact.phone.$t + "<br>" + 'Shelter Email: ' + "</b>" + "<a href = mailto:" + arr[num].contact.email.$t + ">" + arr[num].contact.email.$t + "</a>" + "<br>" + moreStory);
+                var morePhone;
+                if (arr[num].contact.phone.$t !== undefined) {
+                  morePhone = arr[num].contact.phone.$t;
+                }
+                else {
+                  morePhone = 'Unavailable';
+                }
+                $(bio).append('<img class = "images img-responsive thumbnail" id=' + pic + ' src=  ' + morePhotos + '>' + "<b>" + ' My ID: ' + arr[num].id.$t + "<br>" + 'My Shelter\'s ID: ' + arr[num].shelterId.$t + "</br>" + 'Shelter Phone: ' + morePhone + "<br>" + 'Shelter Email: ' + "</b>" + "<a href = mailto:" + arr[num].contact.email.$t + ">" + arr[num].contact.email.$t + "</a>" + "<br>" + moreStory);
             }
 
         }
