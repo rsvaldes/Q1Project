@@ -213,6 +213,7 @@ $(document).ready(function() {
             }
         });
     });
+
     //clearing local storage and HTML when user opts to start new search
     $('#clear').on("click", function() {
         localStorage.clear();

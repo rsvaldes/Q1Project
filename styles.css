@@ -37,6 +37,12 @@ footer {
   .images {
   max-height: 300px;
   width:100%;
+  transition: all 1s ease;
+}
+.images:hover {
+  transform: scale(1.25);
+  /*max-height: 800px;
+  max-width: 200%;*/
 }
 .panel-heading {
   height: 10%;
