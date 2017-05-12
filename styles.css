@@ -321,6 +321,9 @@ and (device-height: 732px) {
   .dogPanels {
     width: 300px;
   }
+  #homepagelogo {
+    padding-top: 10%;
+  }
 }
 
 @media (max-width: 850px) {
@@ -349,6 +352,11 @@ and (device-height: 732px) {
       margin-top: 40%;
     }
   }*/
+  @media  (max-width: 465px) {
+    #zipinput {
+      margin-top: 8%;
+    }
+  }
   @media (max-width: 440px){
     /*#homepagelogo {
       padding-top: 20%;
@@ -384,3 +392,18 @@ and (device-height: 732px) {
         margin-left: 40%;
       }
     }
+@media (min-width: 1440px) {
+  #homepagelogo {
+    padding-top: 1%;
+  }
+}
+@media (min-width: 1200px) {
+  #homepagelogo {
+    padding-top: 1%;
+  }
+}
+@media (min-height: 1096px) {
+  #homepagelogo {
+    padding-top: 10%;
+  }
+}
