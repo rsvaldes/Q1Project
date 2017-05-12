@@ -16,13 +16,26 @@ $(document).ready(function() {
     var $yhr = $.getJSON(`https://g-pet.herokuapp.com/pet.getRandom?animal=dog&count=1&output=basic&format=json`);
     $yhr.done(function(data) {
         var featured = data.petfinder.pet;
-        // console.log(featured);
         let featuredname = '#featureddog .panel-title';
         $(featuredname).html(featured.name.$t);
         console.log(featured.name.$t);
         let featuredbio = '#featureddog .panel-body';
+        var featuredStory;
+        if (featured.description !== undefined) {
+          featuredStory = featured.description.$t;
+        }
+        else {
+          featuredStory = 'My story may be not very well known, but I promise I can give you love if you give me a furever home.';
+        }
         let featuredpic = '#featuredimage';
-        $(featuredbio).html('<img class = "images img-responsive thumbnail" id=' + featuredpic + ' src=  ' + featured.media.photos.photo[3].$t + '>' + "<b>" + 'My ID: ' + featured.id.$t + "<br>" + 'My Shelter\'s ID: ' + featured.shelterId.$t + "</br>" + 'Shelter Phone: ' + featured.contact.phone.$t + "<br>" + 'Shelter Email: ' + "</b>" + "<a href = mailto:" + featured.contact.email.$t + ">" + featured.contact.email.$t + "</a>" + "<br>" + featured.description.$t);
+        var featuredPhoto;
+        if (featured.media.photos !== undefined) {
+          featuredPhoto = featured.media.photos.photo[3].$t;
+        }
+        else {
+          featuredPhoto = "images/dogunavailable.jpg";
+        }
+        $(featuredbio).html('<img class = "images img-responsive thumbnail" id=' + featuredpic + ' src=  ' + featuredPhoto + '>' + "<b>" + 'My ID: ' + featured.id.$t + "<br>" + 'My Shelter\'s ID: ' + featured.shelterId.$t + "</br>" + 'Shelter Phone: ' + featured.contact.phone.$t + "<br>" + 'Shelter Email: ' + "</b>" + "<a href = mailto:" + featured.contact.email.$t + ">" + featured.contact.email.$t + "</a>" + "<br>" + featuredStory);
     });
     // var offset = 0;
     //building panel dynamically, can re-use this code for future AJAX calls
@@ -71,7 +84,7 @@ $(document).ready(function() {
         var size = $('#sizeselect').val();
         var age = $('#ageselect').val();
         var sex = $('#sexselect').val();
-        var url = `https://g-pet.herokuapp.com/pet.find?location=${zip}&animal=dog&count=12&format=json`;
+        var url = `https://g-pet.herokuapp.com/pet.find?location=${zip}&animal=dog&count=36&format=json`;
         if (size) {
             url += `&size=${size}`;
             localStorage.setItem('dogsize', size);
@@ -96,8 +109,21 @@ $(document).ready(function() {
                 let name = '#dog' + (i + 1) + ' .panel-title';
                 $(name).append(arr[i].name.$t);
                 let bio = '#dog' + (i + 1) + ' .panel-body';
+                var dogStory;
+                if (arr[i].description.$t !== undefined) {
+                  dogStory = arr[i].description.$t;
+                }
+                else {
+                  dogStory = 'My story may be not very well known, but I promise I can give you love if you give me a furever home!';
+                }
+                console.log(dogStory);
                 let pic = 'image' + (i + 1);
-                $(bio).append('<img class = "images img-responsive thumbnail" id=' + pic + ' src=  ' + arr[i].media.photos.photo[3].$t + '>' + "<b>" + ' My ID: ' + arr[i].id.$t + "<br>" + 'My Shelter\'s ID: ' + arr[i].shelterId.$t + "</br>" + 'Shelter Phone: ' + arr[i].contact.phone.$t + "<br>" + 'Shelter Email: ' + "</b>" + "<a href = mailto:" + arr[i].contact.email.$t + ">" + arr[i].contact.email.$t + "</a>" + "<br>" + arr[i].description.$t);
+                var dogPhoto;
+                if (arr[i].media.photos !== undefined) {
+                  dogPhoto = arr[i].media.photos.photo[3].$t;
+                }
+                else (dogPhoto = "images/dogunavailable.jpg");
+                $(bio).append('<img class = "images img-responsive thumbnail" id=' + pic + ' src=  ' + dogPhoto + '>' + "<b>" + ' My ID: ' + arr[i].id.$t + "<br>" + 'My Shelter\'s ID: ' + arr[i].shelterId.$t + "</br>" + 'Shelter Phone: ' + arr[i].contact.phone.$t + "<br>" + 'Shelter Email: ' + "</b>" + "<a href = mailto:" + arr[i].contact.email.$t + ">" + arr[i].contact.email.$t + "</a>" + "<br>" + dogStory);
             }
         }
         //setting Ids for dogs in all AJAX calls after first one

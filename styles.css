@@ -40,7 +40,6 @@ footer {
 }
 .panel-heading {
   height: 10%;
-  background-color: #bdaeae;
 }
 .panel {
   height: 500px;
@@ -102,7 +101,7 @@ p {
 }
 
 footer, nav.navbar.navbar-default.navbar-fixed-bottom, .navbar-default {
-  background-color: #bdaeae;
+  background-color: #e5dada;
 }
 nav.navbar.navbar-default.navbar-fixed-bottom {
   margin-top: 10%;
@@ -127,7 +126,7 @@ nav.navbar.navbar-default.navbar-fixed-bottom {
    margin-bottom: 20%;
  }
  #featureddog .panel-heading, #shelterPanel .panel-heading, .panel-heading.dogNames {
-   background-color: #e5dada;
+   background-color: #BDAEAE;
  }
  /* ----------- iPhone 5 and 5S ----------- */
 
