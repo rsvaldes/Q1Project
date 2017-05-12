@@ -111,7 +111,7 @@ $(document).ready(function() {
         function populate(arr) {
             for (var i = 0; i < arr.length; i++) {
                 let name = '#dog' + (i + 1) + ' .panel-title';
-                $(name).append(arr[i].name.$t);
+                $(name).html(arr[i].name.$t);
                 let pic = 'image' + (i + 1);
                 var dogPhoto;
                 let bio = '#dog' + (i + 1) + ' .panel-body';
@@ -133,7 +133,7 @@ $(document).ready(function() {
                 else {
                   shelterPhone = 'Unavailable';
                 }
-                $(bio).append('<img class = "images img-responsive thumbnail" id=' + pic + ' src=  ' + dogPhoto + '>' + "<b>" + ' My ID: ' + arr[i].id.$t + "<br>" + 'My Shelter\'s ID: ' + arr[i].shelterId.$t + "</br>" + 'Shelter Phone: ' + shelterPhone + "<br>" + 'Shelter Email: ' + "</b>" + "<a href = mailto:" + arr[i].contact.email.$t + ">" + arr[i].contact.email.$t + "</a>" + "<br>" + dogStory);
+                $(bio).html('<img class = "images img-responsive thumbnail" id=' + pic + ' src=  ' + dogPhoto + '>' + "<b>" + ' My ID: ' + arr[i].id.$t + "<br>" + 'My Shelter\'s ID: ' + arr[i].shelterId.$t + "</br>" + 'Shelter Phone: ' + shelterPhone + "<br>" + 'Shelter Email: ' + "</b>" + "<a href = mailto:" + arr[i].contact.email.$t + ">" + arr[i].contact.email.$t + "</a>" + "<br>" + dogStory);
             }
         }
         //setting Ids for dogs in all AJAX calls after first one
@@ -155,7 +155,7 @@ $(document).ready(function() {
             for (var i = offset; i <= offset + 12; i++) {
                 let name = '#dog' + (i + 1) + ' .panel-title';
                 var num = (i === offset) ? 0 : num + 1;
-                $(name).append(arr[num].name.$t);
+                $(name).html(arr[num].name.$t);
                 var morePhotos;
                 let pic = 'image' + (i + 1);
                 var moreStory;
@@ -178,7 +178,7 @@ $(document).ready(function() {
                 else {
                   morePhone = 'Unavailable';
                 }
-                $(bio).append('<img class = "images img-responsive thumbnail" id=' + pic + ' src=  ' + morePhotos + '>' + "<b>" + ' My ID: ' + arr[num].id.$t + "<br>" + 'My Shelter\'s ID: ' + arr[num].shelterId.$t + "</br>" + 'Shelter Phone: ' + morePhone + "<br>" + 'Shelter Email: ' + "</b>" + "<a href = mailto:" + arr[num].contact.email.$t + ">" + arr[num].contact.email.$t + "</a>" + "<br>" + moreStory);
+                $(bio).html('<img class = "images img-responsive thumbnail" id=' + pic + ' src=  ' + morePhotos + '>' + "<b>" + ' My ID: ' + arr[num].id.$t + "<br>" + 'My Shelter\'s ID: ' + arr[num].shelterId.$t + "</br>" + 'Shelter Phone: ' + morePhone + "<br>" + 'Shelter Email: ' + "</b>" + "<a href = mailto:" + arr[num].contact.email.$t + ">" + arr[num].contact.email.$t + "</a>" + "<br>" + moreStory);
             }
 
         }

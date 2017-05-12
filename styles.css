@@ -402,8 +402,11 @@ and (device-height: 732px) {
     padding-top: 1%;
   }
 }
-@media (min-height: 1096px) {
-  #homepagelogo {
-    padding-top: 10%;
+@media (height: 1096px) {
+  .navbar-fixed-top {
+    margin-bottom: 40%;
+  }
+  .navbar-fixed-bottom{
+    margin-bottom: 0%;
   }
 }
