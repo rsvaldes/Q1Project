@@ -1,9 +1,5 @@
 $(document).ready(function() {
     var offset = 0;
-    // var $ihr = $.getJSON(`https://g-ipinfodb.herokuapp.com/v3/ip-city/?format=json`);
-    // $ihr.done(function(data) {
-    //   console.log(data);
-    // });
     var audio = document.createElement("audio");
     audio.src = "dogbark.m4a";
     $('.cartoons').hover(function() {
@@ -18,7 +14,6 @@ $(document).ready(function() {
         var featured = data.petfinder.pet;
         let featuredname = '#featureddog .panel-title';
         $(featuredname).html(featured.name.$t);
-        console.log(featured.name.$t);
         let featuredbio = '#featureddog .panel-body';
         var featuredStory;
         if (featured.description !== undefined) {
@@ -108,6 +103,8 @@ $(document).ready(function() {
             for (var i = 0; i < arr.length; i++) {
                 let name = '#dog' + (i + 1) + ' .panel-title';
                 $(name).append(arr[i].name.$t);
+                let pic = 'image' + (i + 1);
+                var dogPhoto;
                 let bio = '#dog' + (i + 1) + ' .panel-body';
                 var dogStory;
                 if (arr[i].description.$t !== undefined) {
@@ -116,9 +113,6 @@ $(document).ready(function() {
                 else {
                   dogStory = 'My story may be not very well known, but I promise I can give you love if you give me a furever home!';
                 }
-                console.log(dogStory);
-                let pic = 'image' + (i + 1);
-                var dogPhoto;
                 if (arr[i].media.photos !== undefined) {
                   dogPhoto = arr[i].media.photos.photo[3].$t;
                 }
@@ -144,21 +138,21 @@ $(document).ready(function() {
         function repopulate(arr) {
             for (var i = offset; i <= offset + 12; i++) {
                 let name = '#dog' + (i + 1) + ' .panel-title';
-                let bio = '#dog' + (i + 1) + ' .panel-body';
+                var num = (i === offset) ? 0 : num + 1;
+                var morePhotos;
+                let pic = 'image' + (i + 1);
                 var moreStory;
+                let bio = '#dog' + (i + 1) + ' .panel-body';
+                if (arr[num].media.photos !== undefined) {
+                    morePhotos = arr[num].media.photos.photo[3].$t;
+                } else {
+                    morePhotos = "images/dogunavailable.jpg";
+                }
                 if (arr[num].description.$t !== undefined) {
                   moreStory = arr[num].description.$t;
                 }
                 else {
                   moreStory = 'My story may be not very well known, but I promise I can give you love if you give me a furever home!';
-                }
-                let pic = 'image' + (i + 1);
-                var num = (i === offset) ? 0 : num + 1;
-                let morePhotos;
-                if (arr[num].media.photos !== undefined) {
-                    morePhotos = arr[num].media.photos.photo[3].$t;
-                } else {
-                    morePhotos = "images/dogunavailable.jpg";
                 }
                 $(name).append(arr[num].name.$t);
                 $(bio).append('<img class = "images img-responsive thumbnail" id=' + pic + ' src=  ' + morePhotos + '>' + "<b>" + ' My ID: ' + arr[num].id.$t + "<br>" + 'My Shelter\'s ID: ' + arr[num].shelterId.$t + "</br>" + 'Shelter Phone: ' + arr[num].contact.phone.$t + "<br>" + 'Shelter Email: ' + "</b>" + "<a href = mailto:" + arr[num].contact.email.$t + ">" + arr[num].contact.email.$t + "</a>" + "<br>" + moreStory);
@@ -168,10 +162,8 @@ $(document).ready(function() {
         //setting url and accessing local storage for all AJAX calls after first one
         $('#moreresults').on("click", function() {
             offset += 12;
-            console.log('more results');
             var alreadyZip = localStorage.getItem('location');
             var newurl = `https://g-pet.herokuapp.com/pet.find?location=${alreadyZip}&offset=${offset}&animal=dog&count=12&format=json`;
-            console.log(offset);
             var alreadySize = localStorage.getItem('dogsize');
             var alreadySex = localStorage.getItem('dogsex');
             var alreadyAge = localStorage.getItem('dogage');
@@ -188,7 +180,7 @@ $(document).ready(function() {
             //gets more data and calls all functions to append data to DOM
             function getMore(anotherurl) {
                 $.getJSON(anotherurl).then(function(result) {
-                    // offset += 12;
+                    console.log(result);
                     let moreDogs = result.petfinder.pets.pet;
                     buildPanels(moreDogs);
                     setNewDogId();
@@ -209,7 +201,6 @@ $(document).ready(function() {
         '<tr id = "header"></tr>'
       );
         for (var i = 0; i < data.length; i++) {
-            console.log('buildList');
             $('#shelterlist').append(
               '<tr class = "rescueList"></tr>'
             );
