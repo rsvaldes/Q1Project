@@ -14,16 +14,17 @@ $(document).ready(function() {
         var featured = data.petfinder.pet;
         let featuredname = '#featureddog .panel-title';
         $(featuredname).html(featured.name.$t);
+        let featuredpic = '#featuredimage';
+        var featuredPhoto;
         let featuredbio = '#featureddog .panel-body';
         var featuredStory;
-        if (featured.description !== undefined) {
+        if (featured.description.$t !== undefined) {
           featuredStory = featured.description.$t;
         }
         else {
-          featuredStory = 'My story may be not very well known, but I promise I can give you love if you give me a furever home.';
+          featuredStory = 'My story may be not very well known, but I promise I will give you lots of love if you give me a furever home!';
         }
-        let featuredpic = '#featuredimage';
-        var featuredPhoto;
+
         if (featured.media.photos !== undefined) {
           featuredPhoto = featured.media.photos.photo[3].$t;
         }
@@ -119,7 +120,7 @@ $(document).ready(function() {
                   dogStory = arr[i].description.$t;
                 }
                 else {
-                  dogStory = 'My story may be not very well known, but I promise I can give you love if you give me a furever home!';
+                  dogStory = 'My story may be not very well known, but I promise I will give you lots of love if you give me a furever home!';
                 }
                 if (arr[i].media.photos !== undefined) {
                   dogPhoto = arr[i].media.photos.photo[3].$t;
@@ -168,7 +169,7 @@ $(document).ready(function() {
                   moreStory = arr[num].description.$t;
                 }
                 else {
-                  moreStory = 'My story may be not very well known, but I promise I can give you love if you give me a furever home!';
+                  moreStory = 'My story may be not very well known, but I promise I will give you lots of love if you give me a furever home!';
                 }
                 var morePhone;
                 if (arr[num].contact.phone.$t !== undefined) {
