@@ -268,7 +268,6 @@ $(document).ready(function() {
             buildRows(rescues);
             buildDivs();
             for (let i = 0; i < rescues.length; i++) {
-                let poundName = '#shelter' + (i + 1) + ' .name';
                 let poundEmail = '#shelter' + (i + 1) + ' .email';
                 let poundPhone = '#shelter' + (i + 1) + ' .phone';
                 $(poundName).html(rescues[i].name.$t);
